@@ -41,12 +41,9 @@ public class ReadWebPage
 			return;
 		}
 		
-		// 1. Get the executor
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		
-		// Define the Callable task to be executed by the executor
-		Callable<List<String>> callable;
-		callable = new Callable<List<String>>() {
+		// 1. Define the Callable task to be executed by the executor
+		Callable<List<String>> callableTask;
+		callableTask = new Callable<List<String>>() {
 			
 			@Override
 			public List<String> call() throws IOException, MalformedURLException
@@ -55,24 +52,25 @@ public class ReadWebPage
 				
 				URL url = new URL(args[0]);
 				
-				HttpURLConnection con;
-				con = (HttpURLConnection) url.openConnection();
+				HttpURLConnection httpUrlConnection;
+				httpUrlConnection = (HttpURLConnection) url.openConnection();
 				
-				InputStreamReader isr;
-				isr = new InputStreamReader(con.getInputStream());
+				InputStreamReader inputStreamReader;
+				inputStreamReader = new InputStreamReader(httpUrlConnection.getInputStream());
 				
-				BufferedReader br;
-				br = new BufferedReader(isr);
+				BufferedReader bufferedReader;
+				bufferedReader = new BufferedReader(inputStreamReader);
 				
 				String line;
-				while ((line = br.readLine()) != null)
+				while ((line = bufferedReader.readLine()) != null)
 					lines.add(line);
 				return lines;
 			}
 		};
 			
-		// 2. Submit task to the executor
-		Future<List<String>> future = executor.submit(callable);
+		// 2. Submit task to the executor		
+        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+		Future<List<String>> future = singleThreadExecutor.submit(callableTask);
 		try
 			{
 				List<String> lines = future.get(5, TimeUnit.SECONDS);
@@ -94,6 +92,6 @@ public class ReadWebPage
 		// 3. Shutdown the executor
 		// Regardless of whether an exception is thrown or not, the executor must be shut down before the application exits. 
 		// If the executor isn't shut down, the application won't exit because the non-daemon thread-pool threads are still executing.
-		executor.shutdown();
+		singleThreadExecutor.shutdown();
 	}
 }

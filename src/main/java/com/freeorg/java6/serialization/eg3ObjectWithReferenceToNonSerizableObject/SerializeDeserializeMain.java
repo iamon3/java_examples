@@ -15,7 +15,7 @@ public class SerializeDeserializeMain {
         emp.setDepartment("CS");
         Address address=new Address(88,"MG road","Pune");
         emp.setAddress(address);
-        //Serialize
+        // Serialize
         try
         {
             FileOutputStream fileOut = new FileOutputStream("employee.ser");
@@ -28,7 +28,7 @@ public class SerializeDeserializeMain {
             i.printStackTrace();
         }
 
-        //Deserialize
+        // Deserialize
         emp = null;
         try
         {

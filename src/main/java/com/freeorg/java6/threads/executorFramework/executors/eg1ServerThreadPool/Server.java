@@ -23,7 +23,7 @@ class Server
 	private static int nThreads = 5;
 	
 	// Fixed Thread Pool Executor
-	static Executor pool = Executors.newFixedThreadPool(nThreads);
+	static Executor fixedSizedThreadPool = Executors.newFixedThreadPool(nThreads);
 
 	public static void main(String[] args) throws IOException
 	{
@@ -42,7 +42,7 @@ class Server
 				}
 			};
 			
-			pool.execute(r);
+			fixedSizedThreadPool.execute(r);
 		}
 		
 		// TODO Figure out how and when to shutdown the Executor
