@@ -1,40 +1,49 @@
 package com.freeorg.java6.threads.oddEvenSeq;
 
 public class SequenceGenerator implements Runnable {
+	private static volatile boolean turn = true;
 
-	private static boolean turnSelector = true;
-	public static int LOOP_COUNT;
+	protected int diff;
+	protected int start;
+	protected int end;
+	private TestClass monitor ;
+	private boolean isOddThread;
 
-	private int currentNumber ;
-	private boolean initialTurn;
-
-	// Constructor
-	public SequenceGenerator(int startingNumber, boolean turn){
-		this.currentNumber = startingNumber;
-		this.initialTurn = turn;
+	public SequenceGenerator(int d, int start, int end, Object o){
+		this.diff = d;
+		this.start = start;
+		this.end= end;
+		this.monitor =(TestClass)o;
+		isOddThread = (1 == start % 2);
 	}
 
-	// Main Run method
 	@Override
 	public void run() {
-		int limit = 2*LOOP_COUNT;
-		while(currentNumber <= limit){
-			if(isMyTurn() ){
-				System.out.println(Thread.currentThread().getName()+" "+currentNumber);
-				currentNumber += 2;
-				toggleTurn();
-			}
+		// TODO Auto-generated method stub
+		try {
+			printSequence();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	//NOR logic => ~XOR
-	private boolean isMyTurn(){
-		return !(initialTurn ^ turnSelector);	
+	public void printSequence() throws InterruptedException{
+		int i=this.start;
+		for(;i<this.end;i+=diff){		
+			synchronized (monitor) {
+				if(!(isOddThread ^ turn)){
+					System.out.println(i);
+					turn = !turn;
+					monitor.notify();
+				}
+				else{
+					monitor.wait();
+					System.out.println(i);
+					turn = !turn;
+					monitor.notify();
+				}			
+			}
+		}
 	}
-
-	//Give turn to another thread
-	private synchronized void toggleTurn(){
-		SequenceGenerator.turnSelector = !SequenceGenerator.turnSelector;
-	}
-
 }

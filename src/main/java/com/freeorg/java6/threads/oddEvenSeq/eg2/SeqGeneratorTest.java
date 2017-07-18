@@ -9,10 +9,11 @@ public class SeqGeneratorTest {
 		
 		try {
 			even.join();
-			odd.join();			
-			odd.start();
-			Thread.sleep(1000);
+			odd.join();
 			even.start();
+			odd.start();
+			//Thread.sleep(1000);
+			
 						
 		} catch (InterruptedException e) {			
 			e.printStackTrace();
