@@ -35,7 +35,7 @@ public class CyclicBarrierDemo
 						name);
 				try
 				{
-					barrier.await();
+					barrier.await();					
 				}
 				catch (BrokenBarrierException bbe)
 				{
@@ -52,6 +52,9 @@ public class CyclicBarrierDemo
 		};
 		ExecutorService[] executors = new ExecutorService[]
 				{
+				Executors.newSingleThreadExecutor(),
+				Executors.newSingleThreadExecutor(),
+				Executors.newSingleThreadExecutor(),
 				Executors.newSingleThreadExecutor(),
 				Executors.newSingleThreadExecutor(),
 				Executors.newSingleThreadExecutor()
