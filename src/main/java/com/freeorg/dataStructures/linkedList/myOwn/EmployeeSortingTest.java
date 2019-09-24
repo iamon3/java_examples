@@ -21,6 +21,8 @@ public class EmployeeSortingTest {
 		System.out.println("Before sorting :- " + staff);
 		Collections.sort(staff, new Employee.EmployeeIdSorter());
 		System.out.println("After Sorting :- "+staff);
+		Collections.reverse(staff);
+		System.out.println("After reversing :- " + staff);
 	}
 
 }
