@@ -1,6 +1,7 @@
 package com.freeorg.java6.collections.queue.priorityQueue.eg1;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
@@ -18,7 +19,7 @@ import java.util.Random;
 public class PriorityQueueExample {
 
 	public static void main(String[] args) {
-
+		HashSet<String> hs;
 		//natural ordering example of priority queue
 		Queue<Integer> integerPriorityQueue = new PriorityQueue<Integer>(7);
 		Random rand = new Random();
@@ -32,7 +33,7 @@ public class PriorityQueueExample {
 		
 		System.out.println("\n================ Priority Queue with comparator ========== \n");
 		// PriorityQueue example with Comparator
-		// If we wonÕt provide comparator while creating customerPriorityQueue, 
+		// If we wonï¿½t provide comparator while creating customerPriorityQueue, 
 		// it will throw ClassCastException at runtime.
 		Queue<Customer> customerPriorityQueue = new PriorityQueue<Customer>(7, idComparator);
 		addDataToQueue(customerPriorityQueue);
