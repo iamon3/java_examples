@@ -8,7 +8,12 @@ public class GenericCollections {
 
 	public static <E> GenericLinkedList<E> reverseGenricLinkedList(GenericLinkedList<E> genericLinkedListToBeReversed){
         Student s1 = new Student(11,"Stud1");
-		genericLinkedListToBeReversed.add(s1);
+		//genericLinkedListToBeReversed.add(s1);
+//        error: incompatible types: Student cannot be converted to E
+//        genericLinkedListToBeReversed.add(s1);
+//		                                  ^
+//        where E is a type-variable:
+//        E extends Object declared in method <E>reverseGenricLinkedList(GenericLinkedList<E>)
 		genericLinkedListToBeReversed.setTail(genericLinkedListToBeReversed.getHead());
 		genericLinkedListToBeReversed.setHead(reverseList(genericLinkedListToBeReversed.getHead()));
 		return genericLinkedListToBeReversed;

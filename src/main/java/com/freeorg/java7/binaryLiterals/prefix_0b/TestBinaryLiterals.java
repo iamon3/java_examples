@@ -43,8 +43,8 @@ public class TestBinaryLiterals {
 	};
 
 	/**
-	 In JDK 7, you can express literal values in binary with prefix ‘0b’ (or ‘0B’) for integral types (byte, short, int and long). 
-	 Before JDK 7, you can only use octal values (with prefix ‘0’) or hexadecimal values (with prefix ‘0x’ or ‘0X’). 
+	 In JDK 7, you can express literal values in binary with prefix '0b' (or '0B') for integral types (byte, short, int and long). 
+	 Before JDK 7, you can only use octal values (with prefix '0') or hexadecimal values (with prefix '0x' or '0X'). 
 	
 	 e.g. int sameVarOne = 0b01010000101;
 			

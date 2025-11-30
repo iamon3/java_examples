@@ -11,7 +11,13 @@ public class GnericAddElementTest {
 	}
 
 	private static void addDogTo(List<? extends Animal> animals) {
-		animals.add(new Dog());
+        // animals.add(new Dog());
+//        error: incompatible types: Dog cannot be converted to CAP#1
+//        animals.add(new Dog());
+//		            ^
+//        where CAP#1 is a fresh type-variable:
+//        CAP#1 extends Animal from capture of ? extends Animal
+
 	}
 
 }

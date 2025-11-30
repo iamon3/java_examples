@@ -14,7 +14,7 @@ public class WithoutSynchronized {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		wait();
+		// wait();
 	    notify();
 		notifyAll();
 	}

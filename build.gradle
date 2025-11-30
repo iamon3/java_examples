@@ -2,6 +2,9 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     //jcenter()
     mavenCentral()
@@ -10,4 +13,3 @@ repositories {
 dependencies {
     // testImplementation 'junit:junit:4.12'
 }
-

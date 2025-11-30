@@ -15,7 +15,7 @@ import java.util.List;
  * Before java 7, we had to use finally blocks to cleanup the resources. 
  * Finally blocks were not mandatory, but resource clean up was to prevent the system from being corrupt. 
  * With java 7, there is no need of explicit resource cleanup in finally block. 
- * Its done automatically. Automatic resource cleanup is done when initializing resource in try-with-resources block (try(…) {…}).
+ * Its done automatically. Automatic resource cleanup is done when initializing resource in try-with-resources block (try(...) {...}).
  * Cleanup happens because of new interface AutoCloseable. 
  * See : FileInputStream extends InputStream, InputStream implements Closeable, Closeable extends AutoCloseable{close();} 
  * Its close method is invoked by JVM as soon as try block finishes. 

@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+sourceCompatibility = 21
+targetCompatibility = 21
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Add any Java 21 specific dependencies here
+}

@@ -21,7 +21,7 @@ import java.util.concurrent.CyclicBarrier;
 	First a new instance of a CyclicBarriers is created specifying the number of threads that the barriers should wait upon.
 
 	CyclicBarrier newBarrier = new CyclicBarrier(numberOfThreads);
-	Each and every thread does some computation and after completing it’s execution, calls await() methods
+	Each and every thread does some computation and after completing its execution, calls await() methods
 
 	Once the number of threads that called await() equals numberOfThreads, the barrier then gives a way for the waiting threads. 
 	The CyclicBarrier can also be initialized with some action that is performed once all the threads have reached the barrier. 
@@ -45,7 +45,7 @@ import java.util.concurrent.CyclicBarrier;
 
 	Difference between a CyclicBarrier and a CountDownLatch
 
-	A CountDownLatch can be used only once in a program(until it’s count reaches 0).
+	A CountDownLatch can be used only once in a program(until its count reaches 0).
 	A CyclicBarrier can be used again and again once all the threads in a barriers is released.
 	
 	Important Methods of CyclicBarrier:
@@ -78,7 +78,7 @@ import java.util.concurrent.CyclicBarrier;
 	Syntax:
 	public int await() throws InterruptedException, BrokenBarrierException
 	Returns:
-	the arrival index of the current thread, where index getParties() – 1 indicates the first to arrive and zero indicates the last to arrive.
+	the arrival index of the current thread, where index getParties() - 1 indicates the first to arrive and zero indicates the last to arrive.
 
 	await: Waits until all parties have invoked await on this barrier, or the specified waiting time elapses.
 	Syntax:
@@ -86,7 +86,7 @@ import java.util.concurrent.CyclicBarrier;
 	throws InterruptedException,
 	BrokenBarrierException, TimeoutException
 	Returns:
-	the arrival index of the current thread, where index getParties() – 1 indicates the first to arrive and zero indicates the last to arrive
+	the arrival index of the current thread, where index getParties() - 1 indicates the first to arrive and zero indicates the last to arrive
 
  */
 class Computation1 implements Runnable
