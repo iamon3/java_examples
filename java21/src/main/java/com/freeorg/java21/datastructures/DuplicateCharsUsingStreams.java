@@ -12,6 +12,10 @@ public class DuplicateCharsUsingStreams {
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
 
-        System.out.println(charCounts);
+        String result = charCounts.entrySet().stream()
+                .map(entry -> entry.getKey() + "=" + entry.getValue())
+                .collect(Collectors.joining(" "));
+
+        System.out.println(result);
     }
 }
