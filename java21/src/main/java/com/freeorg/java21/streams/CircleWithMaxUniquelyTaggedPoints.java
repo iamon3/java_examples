@@ -13,7 +13,7 @@ public class CircleWithMaxUniquelyTaggedPoints {
         record Point(int x, int y, int distance, char tag) {
         }
         ;
-        Set<Point> sortedPoints = new TreeSet<>(Comparator.comparing(point1 -> point1.distance()));
+        Set<Point> sortedPoints = new TreeSet<>(Comparator.comparing(Point::distance).thenComparing(Point::tag));
         Set<Character> visitedTags = new HashSet<>();
         for (int i = 0; i < X.length; i++) {
             if (visitedTags.contains(tags[i])) {
