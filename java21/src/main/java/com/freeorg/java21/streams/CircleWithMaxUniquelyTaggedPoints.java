@@ -13,29 +13,22 @@ public class CircleWithMaxUniquelyTaggedPoints {
         record Point(int x, int y, int distance, char tag) {
         }
         ;
-        List<Point> points = new ArrayList<>();
-
-        for (int i = 0; i < X.length; i++) {
-            points.add(new Point(X[i], Y[i], calcualteDistance(X[i], Y[i]), tags[i]));
-        }
-
-        List<Point> sortedPoints = points.stream()
-                .sorted(Comparator.comparing(Point::distance))
-                .collect(Collectors.toList());
-
+        Set<Point> sortedPoints = new TreeSet<>(Comparator.comparing(point1 -> point1.distance()));
         Set<Character> visitedTags = new HashSet<>();
-        for (Point point : sortedPoints) {
-            if (visitedTags.contains(point.tag())) {
-                break;
+        for (int i = 0; i < X.length; i++) {
+            if (visitedTags.contains(tags[i])) {
+                System.out.println("Sorted Points => " + sortedPoints);
+                return visitedTags.size();
             }
-            visitedTags.add(point.tag());
+            sortedPoints.add(new Point(X[i], Y[i], calcualteDistance(X[i], Y[i]), tags[i]));
+            visitedTags.add(tags[i]);
         }
-
-        return visitedTags.size();
+        System.out.println("Sorted Points => " + sortedPoints);
+        return 0;
     }
 
     int calcualteDistance(int x, int y) {
-        return x * x + y * y;
+        return (int) Math.sqrt(x * x + y * y);
     }
 
     public int solution2(String S, int[] X, int[] Y) {
@@ -48,8 +41,10 @@ public class CircleWithMaxUniquelyTaggedPoints {
                 )
                 .forEach(System.out::println);
 
-        System.out.println("Following stream is what we want as IntStream are faster than Stream.");
-        record Point(int x, int y, int distance, char tag) { };
+        System.out.println("Sorted Points =>  ");
+        record Point(int x, int y, int distance, char tag) {
+        }
+        ;
         Set<Character> seenTags = new HashSet<>();
         IntStream.range(0,
                         Math.min(Math.min(X.length, Y.length), tags.length))
@@ -63,8 +58,9 @@ public class CircleWithMaxUniquelyTaggedPoints {
 
     public static void main(String[] args) {
         CircleWithMaxUniquelyTaggedPoints s = new CircleWithMaxUniquelyTaggedPoints();
-        s.solution("ABCDAE", new int[]{2,4,3,4,5,3}, new int[]{4,2,1,3,1,4});
-        s.solution2("ABCDAE", new int[]{2,4,3,4,5,3}, new int[]{4,2,1,3,1,4});
+        s.solution("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
+        s.solution2("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
+        s.solution("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
     }
 
 }
