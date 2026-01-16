@@ -1,4 +1,4 @@
-package com.freeorg.java8.streams;
+package com.freeorg.java21.streams;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.freeorg.java21.datastructures;
+package com.freeorg.java21.streams;
 
 import java.util.Map;
 import java.util.stream.Collectors;
