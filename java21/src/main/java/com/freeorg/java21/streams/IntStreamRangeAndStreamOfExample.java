@@ -1,13 +1,12 @@
 package com.freeorg.java21.streams;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class CircleWithMaxUniquelyTaggedPoints {
+public class IntStreamRangeAndStreamOfExample {
 
-    public int solution(String S, int[] X, int[] Y) {
+    public int circleWithMaxUniquelyTaggedPointsIterative(String S, int[] X, int[] Y) {
         char[] tags = S.toCharArray();
 
         record Point(int x, int y, int distance, char tag) {
@@ -31,10 +30,10 @@ public class CircleWithMaxUniquelyTaggedPoints {
         return (int) Math.sqrt(x * x + y * y);
     }
 
-    public int solution2(String S, int[] X, int[] Y) {
+    public int circleWithMaxUniquelyTaggedPointsStream(String S, int[] X, int[] Y) {
         char[] tags = S.toCharArray();
 
-        System.out.println("Following stream simplt prints references to arrays of 3 streams, as Stream elements are arrays not values.");
+        System.out.println("Following stream simply prints references to arrays of 3 streams, as Stream elements are arrays not values.");
         Stream.of(Arrays.stream(X).boxed(),
                         Arrays.stream(Y).boxed(),
                         S.chars().mapToObj(c -> (char) c)
@@ -57,10 +56,10 @@ public class CircleWithMaxUniquelyTaggedPoints {
     }
 
     public static void main(String[] args) {
-        CircleWithMaxUniquelyTaggedPoints s = new CircleWithMaxUniquelyTaggedPoints();
-        s.solution("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
-        s.solution2("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
-        s.solution("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
+        IntStreamRangeAndStreamOfExample s = new IntStreamRangeAndStreamOfExample();
+        s.circleWithMaxUniquelyTaggedPointsIterative("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
+        s.circleWithMaxUniquelyTaggedPointsStream("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
+        s.circleWithMaxUniquelyTaggedPointsIterative("ABCDAE", new int[]{2, 4, 3, 4, 5, 3}, new int[]{4, 2, 1, 3, 1, 4});
     }
 
 }
