@@ -39,29 +39,3 @@ public class FindEmpAvgByCity {
 
     }
 }
-
-interface PaymentStrategy{
-    void pay(Bill bill);
-}
-class CardPaymentStrategy implements PaymentStrategy{
-
-    @Override
-    public void pay(Bill bill) {
-        //
-    }
-}
-
-
-class UPIPaymentStrategy implements PaymentStrategy{
-
-    @Override
-    public void pay(Bill bill) {
-
-    }
-}
-
-class PaymentGateway {
-    void payTransaction(Bill bill, PaymentStrategy p){
-        p.pay(bill);
-    }
-}
