@@ -5,6 +5,20 @@ import java.util.Map;
 
 public class LRUCache<K, V> {
 
+    public static void main(String[] args) {
+        LRUCache<Integer, String> cache = new LRUCache<>(3);
+
+        cache.put(1, "A");
+        cache.put(2, "B");
+        cache.put(3, "C"); // Cache: [1=A, 2=B, 3=C]
+
+        cache.get(1);      // Access 1 -> Cache: [2=B, 3=C, 1=A] (1 moved to most recent)
+
+        cache.put(4, "D"); // Evicts key 2 -> Cache: [3=C, 1=A, 4=D]
+
+        System.out.println(cache); // Output: {3=C, 1=A, 4=D}
+    }
+
     // Node structure for Doubly Linked List
     private class Node {
         K key;
@@ -76,5 +90,24 @@ public class LRUCache<K, V> {
     private void moveToHead(Node node) {
         removeNode(node);
         addNodeToHead(node);
+    }
+
+    /**
+     * Returns a string representation of the cache, from most-recently-used to least-recently-used.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        Node current = head.next;
+        while (current != tail) {
+            sb.append(current.key).append("=").append(current.value);
+            if (current.next != tail) {
+                sb.append(", ");
+            }
+            current = current.next;
+        }
+        sb.append("}");
+        return sb.toString();
     }
 }
