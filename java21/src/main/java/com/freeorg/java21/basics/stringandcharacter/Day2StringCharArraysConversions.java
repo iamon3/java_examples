@@ -1,5 +1,6 @@
 package com.freeorg.java21.basics.stringandcharacter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Day2StringCharArraysConversions {
         stringUtilDay2.sortCharsInString("hackereart");
         stringUtilDay2.splitAndTrim(" apple, banana ,cherry ");
         stringUtilDay2.toCharList("Hello World");
+        List l = new ArrayList();
     }
 
     String sortCharsInString(String s) {
