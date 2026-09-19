@@ -5,3 +5,7 @@
 .project
 build/
 
+/.github/copilot-instructions.md
+/.github/agents/frees-tests.agent.md
+/.github/git-commit-instructions.md
+/java21/src/test/java/com/freeorg/java21/datastructures/LRUCacheTest.java

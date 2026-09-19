@@ -78,7 +78,7 @@ public class Day4MultiDimensionalArrayOperations {
         System.out.println("Before Deep Copy Array => " + Arrays.deepToString(matrix));
         int[][] copiedArray = Arrays.stream(matrix)
                 .map(row -> Arrays.stream(row).toArray())
-                .toArray(int[][]::new);
+                .toArray(value -> new int[value][]);
         System.out.println("After Deep Copy Array => " + Arrays.deepToString(copiedArray));
         return copiedArray;
     }
