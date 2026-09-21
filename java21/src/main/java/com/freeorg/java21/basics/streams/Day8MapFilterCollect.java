@@ -1,10 +1,7 @@
 package com.freeorg.java21.basics.streams;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -132,6 +129,20 @@ public class Day8MapFilterCollect {
         return employees.stream()
                 .collect(Collectors.toMap(Employee::getDepartment, Employee::getName,
                         (emp1Name, emp2Name2) -> emp1Name));
+    }
+
+    TreeSet<String> uniqueSortedDeptNames(List<Employee> employees) {
+        return employees.stream()
+                .map(Employee::getDepartment)
+                .collect(Collectors.toCollection(() -> new TreeSet<>()));
+    }
+
+    TreeMap<String, Double> salaryByNameSorted(List<Employee> employees) {
+        return employees.stream()
+                .collect(Collectors.toMap(Employee::getName,
+                        Employee::getSalary,
+                        (sal1, sal2) -> sal1,
+                        () -> new TreeMap<>()));
     }
 
     /**
