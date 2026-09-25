@@ -1,11 +1,12 @@
 package com.freeorg.java21.basics.stringandcharacter;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Day1StringAndStringBuilderMethods {
 
@@ -17,6 +18,24 @@ public class Day1StringAndStringBuilderMethods {
         stringUtilDay1.countVowelsAndConsonants("Hello World");
         stringUtilDay1.areAnagrams("Dormitory!", "Dirty room");
         stringUtilDay1.alphanumericReverseUsingStringIteration("Hello World");
+    }
+
+    /**
+     * write a Java program to find the first non-repeated character in a String.
+     * Example: Input: "swiss" → Output: "w"
+     */
+    Character firstNonRepeatingCharacter(String input){
+        return input.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        c -> c,
+                        ()-> new LinkedHashMap<Character, Integer>(),
+                        Collectors.summingInt(v -> 1)
+                         ))
+                .entrySet().stream()
+                .filter( entry -> entry.getValue().equals(1))
+                .map( entry -> entry.getKey())
+                .findFirst().orElse(null);
     }
 
     public boolean areAnagrams(String s1, String s2) {
