@@ -1,7 +1,7 @@
 package com.freeorg.java21.basics.arrays;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class Day4MultiDimensionalArrayOperations {
@@ -29,7 +29,20 @@ public class Day4MultiDimensionalArrayOperations {
                 {3, 3},
                 {1, 1, 1, 1, 1, 1}
         }, 6);
-        arrayUtil.flattenAndChunk(new int[]{1,2,3,4,5,6}, 2);
+        arrayUtil.flattenAndChunk(new int[]{1, 2, 3, 4, 5, 6}, 2);
+        arrayUtil.sortMatrixByRowAndColumn(new int[][]{
+                {23, 16, 37, 92, 47},
+                {12, 4, 67, 29, 41},
+                {45, 234, 1, 45, 76, 37},
+                {56, 27, 89, 36, 7}
+        });
+
+        arrayUtil.sortMatrix(new int[][]{
+                {23, 16, 37, 92, 47},
+                {12, 4, 67, 29, 41},
+                {45, 234, 1, 45, 76, 37},
+                {56, 27, 89, 36, 7}
+        });
     }
 
     int[][] createJaggedArray(int rows) {
@@ -102,5 +115,39 @@ public class Day4MultiDimensionalArrayOperations {
                 .toArray(int[][]::new);
         System.out.println("Flatten and Chunked 2d Array => " + Arrays.deepToString(chunkedArr));
         return chunkedArr;
+    }
+
+    int[][] sortMatrixByRowAndColumn(int[][] arr) {
+        System.out.println("Input arr : " + Arrays.deepToString(arr));
+
+        Comparator<int[]> firstRowThenColumnSorter = Comparator.comparingInt((int[] r) -> {
+            Arrays.sort(r);
+            return r[0];
+        });
+        Arrays.sort(arr, firstRowThenColumnSorter);
+        System.out.println("After sorting rows by first column arr : " + Arrays.deepToString(arr));
+        return arr;
+    }
+
+    void sortMatrix(int[][] arr) {
+        if (arr == null || arr.length == 0) return;
+
+        System.out.println("Input arr : " + Arrays.deepToString(arr));
+
+        // 1. Flatten all elements into a single sorted 1D array
+        int[] sorted = Arrays.stream(arr)
+                .flatMapToInt(Arrays::stream)
+                .sorted()
+                .toArray();
+
+        // 2. Put elements back into the 2D matrix (handles jagged arrays too)
+        int idx = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                arr[i][j] = sorted[idx++];
+            }
+        }
+
+        System.out.println("Sorted arr: " + Arrays.deepToString(arr));
     }
 }
